@@ -5,12 +5,15 @@ import LogOut from "../Pages/Login/LogOut";
 import { useLoginstore } from "../Pages/Login/useLoginstore";
 
 const Header = () => {
-  const { loggedIn } = useLoginstore((store) => ({
+  const { loggedIn, User } = useLoginstore((store) => ({
     loggedIn: store.loggedIn,
+    User: store.User,
   }));
+
   return (
     <div>
       {!loggedIn ? <Login /> : <LogOut />}
+      {User}
       <Link to="/dashboard">{!loggedIn ? "Public Dashboard" : "Private Dashboard"}</Link>
     </div>
   );

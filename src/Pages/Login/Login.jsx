@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { useLoginstore } from "./useLoginstore";
 
 const Login = () => {
-  const { setLoggedIn } = useLoginstore((store) => ({
+  const { setLoggedIn, setLogOut, setUser } = useLoginstore((store) => ({
     setLoggedIn: store.setLoggedIn,
+    setLogOut: store.setLogOut,
+    setUser: store.setUser,
   }));
 
   const { register, handleSubmit } = useForm();
@@ -12,14 +14,20 @@ const Login = () => {
     const URL = "https://api.mediehuset.net/token";
 
     try {
-      fetch(URL, {
+      const response = await fetch(URL, {
         body: JSON.stringify(submitdata),
         method: "POST",
         headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" },
-      })
-        .then((response) => response.json())
-        .then((data) => sessionStorage.setItem("token", JSON.stringify(data)), setLoggedIn());
+      });
+
+      if (response.ok === true) {
+        const data = await response.json();
+        sessionStorage.setItem("token", JSON.stringify(data));
+        setLoggedIn();
+        setUser(data.username);
+      }
     } catch (error) {
+      if (error.status === 401) setLogOut();
       console.log(error);
     }
   };
