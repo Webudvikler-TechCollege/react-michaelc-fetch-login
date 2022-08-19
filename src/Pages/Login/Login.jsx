@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useLoginstore } from "./useLoginstore";
+import { useLoginStore } from "./useLoginStore";
 
 const Login = () => {
-  const { setLoggedIn, setLogOut, setUser } = useLoginstore((store) => ({
+  const { setLoggedIn, setLogOut, setUser } = useLoginStore((store) => ({
     setLoggedIn: store.setLoggedIn,
     setLogOut: store.setLogOut,
     setUser: store.setUser,

@@ -2,14 +2,14 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Notfound from "./Pages/Notfound";
 
-import { useLoginstore } from "./Pages/Login/useLoginstore";
+import { useLoginStore } from "./Pages/Login/useLoginStore";
 import Public from "./Pages/Public";
 import Private from "./Pages/Private";
 import Header from "./Components/Header";
 
 
 function App() {
-  const { loggedIn } = useLoginstore((store) => ({
+  const { loggedIn } = useLoginStore((store) => ({
     loggedIn: store.loggedIn,
   }));
   return (

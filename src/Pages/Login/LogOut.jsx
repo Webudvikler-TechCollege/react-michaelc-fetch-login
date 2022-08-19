@@ -1,7 +1,7 @@
-import { useLoginstore } from "./useLoginstore";
+import { useLoginStore } from "./useLoginStore";
 
 const LogOut = () => {
-  const { setLogOut } = useLoginstore((store) => ({
+  const { setLogOut } = useLoginStore((store) => ({
     setLogOut: store.setLogOut,
   }));
 

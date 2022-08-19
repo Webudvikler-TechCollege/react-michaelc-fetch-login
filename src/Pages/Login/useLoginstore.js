@@ -1,6 +1,6 @@
 import create from "zustand";
 
-export const useLoginstore = create((set) => {
+export const useLoginStore = create((set) => {
   return {
     loggedIn: Boolean(localStorage.getItem("token")),
     User: null,

@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import Login from "../Pages/Login/Login";
 import LogOut from "../Pages/Login/LogOut";
 
-import { useLoginstore } from "../Pages/Login/useLoginstore";
+import { useLoginStore } from "../Pages/Login/useLoginStore";
+import { Nav } from "./Nav";
 
 const Header = () => {
-  const { loggedIn, User } = useLoginstore((store) => ({
+  const { loggedIn, User } = useLoginStore((store) => ({
     loggedIn: store.loggedIn,
     User: store.User,
   }));
@@ -15,6 +16,7 @@ const Header = () => {
       {!loggedIn ? <Login /> : <LogOut />}
       {User}
       <Link to="/dashboard">{!loggedIn ? "Public Dashboard" : "Private Dashboard"}</Link>
+      <Nav />
     </div>
   );
 };
